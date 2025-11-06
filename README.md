@@ -98,7 +98,7 @@ Copilot, I just opened my World Clock website and it looks completely broken - a
 ### **Phase 2: Issue Management via GitHub MCP** 📝
 **User Prompt:**
 ```
-Now that we've found the CSS link typo, can you create a GitHub issue to track this bug? Make it a critical priority since it breaks the entire user experience. Please create the issue against the current demo branch (not main).
+Now that we've found the CSS link typo, can you create a GitHub issue to track this bug? Make it a critical priority since it breaks the entire user experience. Please create the issue against the current demo branch (not main). In the issue description, explicitly mention that the fix should be developed from the demo branch as the base.
 ```
 
 **Expected AI Actions:**
@@ -111,23 +111,22 @@ Now that we've found the CSS link typo, can you create a GitHub issue to track t
 ### **🤖 Phase 3: GitHub Coding Agent Assignment** 🚀
 **User Prompt:**
 ```
-Perfect! Now assign this issue to the GitHub Coding Agent (@github-copilot[bot]) and let it handle the hotfix branch creation, development, and PR workflow automatically.
+Perfect! Now assign this issue to the GitHub Coding Agent (@github-copilot[bot]) and let it handle the hotfix branch creation, development, and PR workflow automatically. Please explicitly request that the agent create the fix branch from the demo branch (not main) and target the demo branch for the pull request.
 ```
 
 **Expected AI Actions:**
 - Use `mcp_github_assign_copilot_to_issue` to assign the issue to GitHub Coding Agent
 - Confirm assignment success
-- **GitHub Coding Agent will automatically:**
-  - Create hotfix branch from current demo branch
-  - Analyze the issue and implement the fix
-  - Run tests and validation
-  - Create pull request with proper linking
+- **Include explicit instruction for GitHub Coding Agent to:**
+  - Create branch from demo branch (not main) using naming convention `copilot/fix-{description}`
+  - Target the demo branch for the pull request
+  - Base all work on the demo branch context
 
 ### **🤖 Phase 4: Automated Development (GitHub Coding Agent)** 🛠️
 
-**What GitHub Coding Agent Does Automatically:**
+**What GitHub Coding Agent Should Do (If Following Instructions):**
 
-1. **Branch Creation**: Creates `hotfix/css-stylesheet-typo-#{issue-number}` from demo branch
+1. **Branch Creation**: Creates `copilot/fix-css-stylesheet-typo` from demo branch (if instructions are followed)
 2. **Code Analysis**: Analyzes the CSS link issue in `index.html`
 3. **Fix Implementation**: Corrects `href="styls.css"` → `href="styles.css"`
 4. **Validation**: Tests the fix to ensure styling loads correctly
@@ -139,26 +138,27 @@ Perfect! Now assign this issue to the GitHub Coding Agent (@github-copilot[bot])
 
 1. **Commit Creation**: Creates meaningful commit message: "Fix critical CSS stylesheet filename typo"
 2. **PR Creation**: Creates pull request with:
-   - **Base**: Current demo branch (not main)
-   - **Head**: The hotfix branch
+   - **Base**: demo branch (if instructions are followed)
+   - **Head**: The copilot fix branch (`copilot/fix-css-stylesheet-typo`)
    - **Description**: Includes "Fixes #{issue-number}" for auto-linking
    - **Details**: Comprehensive description of the fix and testing
 3. **Code Review**: Self-reviews the changes for quality assurance
 4. **Status Updates**: Comments on the issue with progress updates
 
+**Note**: If GitHub Copilot defaults to main branch despite instructions, this demonstrates the platform's current limitations in branch selection.
+
 ### **Phase 6: Completion via GitHub MCP** 🎉
 **User Prompt:**
 ```
-Excellent! The GitHub Coding Agent has created the PR and self-reviewed it. The fix looks good. Can you merge it into the demo branch, delete the hotfix branch and close the issue after adding a comment to it?
+Excellent! The GitHub Coding Agent has created the PR and self-reviewed it. The fix looks good. Can you merge it into the demo branch (or main if that's where the PR was targeted), delete the copilot fix branch and close the issue after adding a comment to it?
 ```
 
 **Expected AI Actions:**
 - Review the GitHub Coding Agent's work
-- Use `mcp_github_merge_pull_request` to merge PR into demo branch
+- Use `mcp_github_merge_pull_request` to merge PR into the target branch (demo or main)
 - Use `mcp_github_add_issue_comment` to add completion comment to the issue
 - Issue will auto-close due to "Fixes #" in PR description
-- Delete the hotfix branch locally and remotely
-- Switch back to main branch locally
+- Delete the copilot fix branch locally and remotely
 - Confirm all cleanup completed successfully
 
 ### **Phase 7: Post-Demo Cleanup** 🔧
