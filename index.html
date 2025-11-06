@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock - GitHub Coding Agent Demo</title>
+    <link rel="stylesheet" href="styls.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 World Clock</h1>
+            <p>A beautiful time display powered by WorldTimeAPI</p>
+        </header>
+
+        <main>
+            <div class="clock-container">
+                <div class="main-clock">
+                    <div class="time-display">
+                        <div id="current-time" class="time">Loading...</div>
+                        <div id="current-date" class="date">Loading...</div>
+                    </div>
+                    <div class="timezone-info">
+                        <div id="timezone" class="timezone">Fetching timezone...</div>
+                        <div id="location" class="location">📍 Location</div>
+                    </div>
+                </div>
+
+                <div class="additional-info">
+                    <div class="info-card">
+                        <h3>🌅 Day of Year</h3>
+                        <span id="day-of-year" class="info-value">---</span>
+                    </div>
+                    <div class="info-card">
+                        <h3>📅 Week Number</h3>
+                        <span id="week-number" class="info-value">---</span>
+                    </div>
+                    <div class="info-card">
+                        <h3>🌍 Time Zone</h3>
+                        <span id="utc-offset" class="info-value">---</span>
+                    </div>
+                    <div class="info-card">
+                        <h3>🌙 Day/Night</h3>
+                        <span id="day-night" class="info-value">---</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="refreshTime()" class="refresh-btn">🔄 Refresh Time</button>
+                <select id="timezone-selector" onchange="changeTimezone()">
+                    <option value="auto">🌐 Auto-detect Location</option>
+                    <option value="America/New_York">🗽 New York</option>
+                    <option value="Europe/London">🇬🇧 London</option>
+                    <option value="Asia/Tokyo">🗾 Tokyo</option>
+                    <option value="Australia/Sydney">🇦🇺 Sydney</option>
+                    <option value="America/Los_Angeles">🌴 Los Angeles</option>
+                    <option value="Europe/Paris">🗼 Paris</option>
+                </select>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built for GitHub Coding Agent Demo • Data from <a href="http://worldtimeapi.org/" target="_blank">WorldTimeAPI</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
