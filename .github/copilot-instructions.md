@@ -29,22 +29,40 @@ This is an **alternative demonstration project** for GitHub Coding Agent integra
 
 ### GitHub Coding Agent Workflow Demonstration
 
-When assisting with this project, follow this **enhanced demo sequence**:
+When assisting with this project, follow this **7-phase demo sequence**:
 
-1. **Issue Detection** (Human): Identify the CSS link typo causing styling failure
-2. **GitHub Issue Creation** (Human): Use `mcp_github_issue_write` with labels: `bug`, `critical`, `styling`
-3. **🤖 Agent Assignment** (Human): Use `mcp_github_assign_copilot_to_issue` to assign to GitHub Coding Agent
-4. **🤖 Automated Development** (Agent): GitHub Coding Agent handles:
-   - Branch creation (`hotfix/css-stylesheet-typo-#{issue-number}`)
-   - Code analysis and fix implementation
-   - Testing and validation
-   - Quality assurance checks
-5. **🤖 Automated Integration** (Agent): GitHub Coding Agent handles:
-   - Commit creation with meaningful messages
-   - Pull request creation with auto-linking
-   - Self-review and documentation
-   - Status updates to issue
-6. **Human Oversight** (Human): Final review and merge approval
+**Phase 0: Pre-Demo Setup** (Human + AI)
+- Human prompts AI to create demo branch from main using `mcp_github_create_branch`
+- Switch to demo branch locally for development context
+
+**Phase 1: Issue Discovery** (Human + AI)
+- Human reports styling issues via natural language prompt
+- AI analyzes HTML file and identifies CSS link typo in line 7
+- AI explains root cause and impact of `href="styls.css"` missing 'e'
+
+**Phase 2: Issue Management** (Human + AI)
+- Human prompts AI to create GitHub issue using `mcp_github_issue_write`
+- AI creates issue with labels: `bug`, `critical`, `styling`
+- Issue references demo branch and requests fix from demo branch base
+
+**Phase 3: GitHub Coding Agent Assignment** (Human Choice)
+- **CRITICAL LIMITATION**: MCP tools (`mcp_github_assign_copilot_to_issue`) cannot specify base branch
+- **Consequence**: MCP assignment defaults to main branch, breaking demo workflow
+- **Solution**: Manual UI assignment (user clicks GitHub interface to select demo branch)
+
+**Phase 4-5: Automated Development & Integration** (GitHub Coding Agent)
+- Agent creates branch from demo branch (if manual UI assignment specifies demo branch) or main (if defaults)
+- Agent fixes `href="styls.css"` → `href="styles.css"` in `index.html` line 7
+- Agent creates PR with proper linking and documentation
+- Agent performs self-review and status updates
+
+**Phase 6: Completion** (Human + AI) 
+- Human prompts AI to merge PR using `mcp_github_merge_pull_request`
+- AI handles branch cleanup and issue closure
+
+**Phase 7: Post-Demo Cleanup** (Human + AI)
+- Human prompts AI to delete demo branch locally and remotely
+- Return to main branch
 
 ### GitHub Coding Agent Capabilities to Highlight
 
@@ -102,7 +120,8 @@ When assisting with this project, follow this **enhanced demo sequence**:
 
 ### Assignment Mechanism
 
-- **Issue Assignment**: Direct assignment using `@github-copilot[bot]` mention
+- **Branch Limitation**: Current MCP tools cannot specify base branch (defaults to main)
+- **Assignment Solution**: Manual UI assignment via GitHub web interface with branch selection
 - **Task Clarity**: Issues should clearly describe the problem and expected outcome
 - **Context Provision**: Include file names, line numbers, and error descriptions
 
@@ -174,10 +193,10 @@ When explaining this enhanced project to others:
 When this project is assigned to GitHub Coding Agent, the agent should:
 
 1. **Analyze the Issue**: Understand that this is a CSS linking problem
-2. **Create Branch**: Use naming convention `hotfix/css-stylesheet-typo-#{issue-number}`
+2. **Create Branch**: Use naming convention like `copilot/fix-css-stylesheet-typo` or similar descriptive name
 3. **Implement Fix**: Change `href="styls.css"` to `href="styles.css"` in line 7 of `index.html`
 4. **Validate Fix**: Ensure the change resolves the styling issue
-5. **Create PR**: Include "Fixes #{issue-number}" for auto-linking
+5. **Create PR**: Include "Fixes issue" reference with actual issue number for auto-linking
 6. **Document Work**: Provide comprehensive PR description explaining the fix
 7. **Self-Review**: Add review comments explaining the change and its impact
 8. **Update Issue**: Comment on issue with progress and completion status

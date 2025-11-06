@@ -109,18 +109,25 @@ Now that we've found the CSS link typo, can you create a GitHub issue to track t
 - **Important**: Issue should reference demo branch, not main
 
 ### **🤖 Phase 3: GitHub Coding Agent Assignment** 🚀
-**User Prompt:**
-```
-Perfect! Now assign this issue to the GitHub Coding Agent (@github-copilot[bot]) and let it handle the hotfix branch creation, development, and PR workflow automatically. Please explicitly request that the agent create the fix branch from the demo branch (not main) and target the demo branch for the pull request.
-```
 
-**Expected AI Actions:**
-- Use `mcp_github_assign_copilot_to_issue` to assign the issue to GitHub Coding Agent
-- Confirm assignment success
-- **Include explicit instruction for GitHub Coding Agent to:**
-  - Create branch from demo branch (not main) using naming convention `copilot/fix-{description}`
-  - Target the demo branch for the pull request
-  - Base all work on the demo branch context
+> **Note**: The current GitHub MCP Server tools (`mcp_github_assign_copilot_to_issue`) do not support specifying base branch parameters yet, which means they will default to using the main branch as the base. Since this demo works from a demo branch, this limitation breaks the intended workflow. For this demo, use the manual UI assignment approach below.
+
+**Manual Assignment Process:**
+
+This phase requires manual steps by the user (no AI prompt needed):
+
+1. Navigate to the issue in GitHub web interface
+2. Click "Assign to Copilot" button in the issue sidebar
+3. In the assignment dialog that appears:
+
+![GitHub Copilot Assignment Dialog](./screenshots/copilot-assignment-dialog.png)
+
+   - **Target repository**: Should show your repository (correct)
+   - **Base branch**: Select the demo branch from dropdown (not main)
+   - **Optional prompt**: Add "Target the demo branch for the pull request"
+4. Click "Assign" button to confirm
+
+> **Note**: Agent may still target main branch for PR despite instructions due to platform limitations.
 
 ### **🤖 Phase 4: Automated Development (GitHub Coding Agent)** 🛠️
 
@@ -147,24 +154,25 @@ Perfect! Now assign this issue to the GitHub Coding Agent (@github-copilot[bot])
 
 **Note**: If GitHub Copilot defaults to main branch despite instructions, this demonstrates the platform's current limitations in branch selection.
 
-### **Phase 6: Completion via GitHub MCP** 🎉
+### **Phase 6: Human Review & Completion** 🎉
 **User Prompt:**
 ```
-Excellent! The GitHub Coding Agent has created the PR and self-reviewed it. The fix looks good. Can you merge it into the demo branch (or main if that's where the PR was targeted), delete the copilot fix branch and close the issue after adding a comment to it?
+I've reviewed the draft PR from GitHub Coding Agent and I'm happy with the changes. The CSS link fix looks correct. Please mark the PR as ready for review and merge it.
 ```
 
 **Expected AI Actions:**
-- Review the GitHub Coding Agent's work
-- Use `mcp_github_merge_pull_request` to merge PR into the target branch (demo or main)
-- Use `mcp_github_add_issue_comment` to add completion comment to the issue
+- Review the GitHub Coding Agent's draft PR and changes
+- Analyze the fix: `href="styls.css"` → `href="styles.css"`
+- Use `mcp_github_update_pull_request` to mark as ready for review (remove draft status)
+- Use `mcp_github_merge_pull_request` to merge PR into the target branch
 - Issue will auto-close due to "Fixes #" in PR description
 - Delete the copilot fix branch locally and remotely
-- Confirm all cleanup completed successfully
+- Confirm merge and cleanup completed successfully
 
 ### **Phase 7: Post-Demo Cleanup** 🔧
 **User Prompt:**
 ```
-Finally, can you now delete the demo branch locally and remotely?
+Great! Now that the fix is merged, can you delete the demo branch both locally and remotely, and switch back to the main branch?
 ```
 
 **Expected AI Actions:**
