@@ -1,37 +1,250 @@
-# GitHub Coding Agent Demo Project - AI Instructions
+# GitHub Coding Agent Instructions - CSS Bug Fix Demo# GitHub Coding Agent Instructions - CSS Bug Fix Demo# GitHub Coding Agent Instructions - CSS Bug Fix Demo
 
-## Project Purpose
 
-This is an **alternative demonstration project** for GitHub Coding Agent integration, building upon the original GitHub MCP Server concept. The primary goal is showcasing **prompt-driven AI assignment** for automated DevOps workflows through a deliberately broken World Clock web app.
 
-## Critical Architecture Understanding
+## Your Role in This Demo
 
-### Demo-Specific Bug Pattern
 
-- **Intentional Bug**: Line 7 in `index.html` has `href="styls.css"` (missing 'e')
-- **Purpose**: Creates visually obvious CSS failure for demonstration
-- **Fix**: Change to `href="styles.css"`
-- **Impact**: Without fix, page appears completely unstyled
 
-### Core Components
+You are **GitHub Coding Agent** assigned to fix a critical CSS bug in a World Clock web application. This is a demonstration project showcasing AI-assisted development workflows.## Your Role in This Demo## Your Role in This Demo
 
-- `index.html`: Single-page World Clock app (contains demo bug)
-- `styles.css`: Modern CSS with CSS Grid layout and CSS custom properties
-- `script.js`: ES6 class-based WorldClock with timezone handling via `Intl` API
-- `.vscode/mcp.json`: MCP server configuration for GitHub integration
 
-## Alternative Development Workflow (GitHub Coding Agent)
 
-### Traditional vs Alternative Workflow
+## The Bug You Need to Fix
 
-**Original Demo**: Human + MCP Tools for all phases  
-**Alternative Demo**: Human discovery → GitHub Coding Agent automation (phases 3-5)
 
-### GitHub Coding Agent Workflow Demonstration
 
-When assisting with this project, follow this **7-phase demo sequence**:
+**File**: `index.html` (line 7)  You are **GitHub Coding Agent** assigned to fix a critical CSS bug in a World Clock web application. This is a demonstration project showcasing AI-assisted development workflows.You are **GitHub Coding Agent** assigned to fix a critical CSS bug in a World Clock web application. This is a demonstration project showcasing AI-assisted development workflows.
 
-**Phase 0: Pre-Demo Setup** (Human + AI)
+**Current (Broken)**: `<link rel="stylesheet" href="styls.css">`  
+
+**Fix Required**: `<link rel="stylesheet" href="styles.css">`  
+
+**Impact**: Missing 'e' in filename prevents CSS from loading, causing unstyled page
+
+## The Bug You Need to Fix## The Bug You Need to Fix
+
+## Your Task Workflow
+
+
+
+### 1. Branch Creation
+
+- Create a new branch with naming pattern: `copilot/fix-css-stylesheet-typo`**File**: `index.html` (line 7)  **File**: `index.html` (line 7)  
+
+- Branch from the demo branch if specified, otherwise from main branch
+
+- Use descriptive commit messages**Current (Broken)**: `<link rel="stylesheet" href="styls.css">`  **Current (Broken)**: `<link rel="stylesheet" href="styls.css">`  
+
+
+
+### 2. Code Analysis & Fix**Fix Required**: `<link rel="stylesheet" href="styles.css">`  **Fix Required**: `<link rel="stylesheet" href="styles.css">`  
+
+- Identify the CSS link issue in `index.html` line 7
+
+- Change `href="styls.css"` to `href="styles.css"`**Impact**: Missing 'e' in filename prevents CSS from loading, causing unstyled page**Impact**: Missing 'e' in filename prevents CSS from loading, causing unstyled page
+
+- Ensure no other changes are needed
+
+- Validate the fix resolves the styling issue
+
+
+
+### 3. Pull Request Creation## Your Task Workflow## Your Task Workflow
+
+- Create PR as **draft** initially
+
+- **Base branch**: Target demo branch if that's where you branched from
+
+- **Title**: "Fix critical CSS stylesheet filename typo"
+
+- **Description**: Include "Fixes" keyword with issue number for auto-linking### 1. Branch Creation### 1. Branch Creation
+
+- Provide detailed explanation of:
+
+  - Root cause analysis- Create a new branch with naming pattern: `copilot/fix-css-stylesheet-typo`- Create a new branch with naming pattern: `copilot/fix-css-stylesheet-typo`
+
+  - Fix implementation
+
+  - Testing approach- Branch from the demo branch if specified, otherwise from main branch- Branch from the demo branch if specified, otherwise from main branch
+
+  - Impact assessment
+
+- Use descriptive commit messages- Use descriptive commit messages
+
+### 4. Quality Assurance
+
+- Self-review your changes
+
+- Add review comments explaining the fix
+
+- Ensure commit message follows best practices### 2. Code Analysis & Fix### 2. Code Analysis & Fix
+
+- Request human review (leave as draft)
+
+- Identify the CSS link issue in `index.html` line 7- Identify the CSS link issue in `index.html` line 7
+
+## Project Context
+
+- Change `href="styls.css"` to `href="styles.css"`- Change `href="styls.css"` to `href="styles.css"`
+
+### Architecture
+
+- **HTML**: Single-page World Clock application- Ensure no other changes are needed- Ensure no other changes are needed
+
+- **CSS**: Modern styling with Grid layout and custom properties
+
+- **JavaScript**: ES6 class-based WorldClock with timezone handling- Validate the fix resolves the styling issue- Validate the fix resolves the styling issue
+
+- **No build tools**: Simple static web application
+
+
+
+### Code Standards
+
+- **Minimal changes**: Fix only the specific issue### 3. Pull Request Creation### 3. Pull Request Creation
+
+- **Preserve formatting**: Maintain existing HTML structure
+
+- **Clear commits**: Use descriptive commit messages- Create PR as **draft** initially- Create PR as **draft** initially
+
+- **Documentation**: Explain changes in PR description
+
+- **Base branch**: Target demo branch if that's where you branched from- **Base branch**: Target demo branch if that's where you branched from
+
+## Demo Constraints
+
+- **Title**: "Fix critical CSS stylesheet filename typo"- **Title**: "Fix critical CSS stylesheet filename typo"
+
+- **DO NOT** add build tools, package.json, or dependencies
+
+- **DO NOT** create unit tests (visual verification sufficient)- **Description**: Include "Fixes" keyword with issue number for auto-linking- **Description**: Include "Fixes" keyword with issue number for auto-linking
+
+- **DO NOT** modify other files unless absolutely necessary
+
+- **DO NOT** over-engineer the solution- Provide detailed explanation of:- Provide detailed explanation of:
+
+
+
+## Success Criteria  - Root cause analysis  - Root cause analysis
+
+
+
+✅ **CSS loads correctly** after fix    - Fix implementation  - Fix implementation
+
+✅ **Page appears styled** with proper layout  
+
+✅ **Single-line change** in index.html only    - Testing approach  - Testing approach
+
+✅ **Draft PR created** with comprehensive description  
+
+✅ **Issue auto-linked** via Fixes keyword syntax    - Impact assessment  - Impact assessment
+
+✅ **Human review requested** (draft status)
+
+
+
+## Communication Guidelines
+
+### 4. Quality Assurance### 4. Quality Assurance
+
+When creating the PR:
+
+- Explain the root cause clearly- Self-review your changes- Self-review your changes
+
+- Describe the fix and why it works
+
+- Mention testing approach (visual verification)- Add review comments explaining the fix- Add review comments explaining the fix
+
+- Request human review for final approval
+
+- Keep explanations concise but thorough- Ensure commit message follows best practices- Ensure commit message follows best practices
+
+
+
+Remember: This is a demo showcasing your capabilities. Focus on quality, clarity, and proper development practices while keeping the solution simple and focused.- Request human review (leave as draft)- Request human review (leave as draft)
+
+
+
+## Project Context## Project Context
+
+
+
+### Architecture### Architecture
+
+- **HTML**: Single-page World Clock application- **HTML**: Single-page World Clock application
+
+- **CSS**: Modern styling with Grid layout and custom properties- **CSS**: Modern styling with Grid layout and custom properties
+
+- **JavaScript**: ES6 class-based WorldClock with timezone handling- **JavaScript**: ES6 class-based WorldClock with timezone handling
+
+- **No build tools**: Simple static web application- **No build tools**: Simple static web application
+
+
+
+### Code Standards### Code Standards
+
+- **Minimal changes**: Fix only the specific issue- **Minimal changes**: Fix only the specific issue
+
+- **Preserve formatting**: Maintain existing HTML structure- **Preserve formatting**: Maintain existing HTML structure
+
+- **Clear commits**: Use descriptive commit messages- **Clear commits**: Use descriptive commit messages
+
+- **Documentation**: Explain changes in PR description- **Documentation**: Explain changes in PR description
+
+
+
+## Demo Constraints## Demo Constraints
+
+
+
+- **DO NOT** add build tools, package.json, or dependencies- **DO NOT** add build tools, package.json, or dependencies
+
+- **DO NOT** create unit tests (visual verification sufficient)- **DO NOT** create unit tests (visual verification sufficient)
+
+- **DO NOT** modify other files unless absolutely necessary- **DO NOT** modify other files unless absolutely necessary
+
+- **DO NOT** over-engineer the solution- **DO NOT** over-engineer the solution
+
+
+
+## Success Criteria## Success Criteria
+
+
+
+✅ **CSS loads correctly** after fix  ✅ **CSS loads correctly** after fix  
+
+✅ **Page appears styled** with proper layout  ✅ **Page appears styled** with proper layout  
+
+✅ **Single-line change** in index.html only  ✅ **Single-line change** in index.html only  
+
+✅ **Draft PR created** with comprehensive description  ✅ **Draft PR created** with comprehensive description  
+
+✅ **Issue auto-linked** via Fixes keyword syntax  ✅ **Issue auto-linked** via Fixes keyword syntax  
+
+✅ **Human review requested** (draft status)✅ **Human review requested** (draft status)
+
+
+
+## Communication Guidelines## Communication Guidelines
+
+
+
+When creating the PR:When creating the PR:
+
+- Explain the root cause clearly- Explain the root cause clearly
+
+- Describe the fix and why it works- Describe the fix and why it works
+
+- Mention testing approach (visual verification)- Mention testing approach (visual verification)
+
+- Request human review for final approval- Request human review for final approval
+
+- Keep explanations concise but thorough- Keep explanations concise but thorough
+
+
+
+Remember: This is a demo showcasing your capabilities. Focus on quality, clarity, and proper development practices while keeping the solution simple and focused.Remember: This is a demo showcasing your capabilities. Focus on quality, clarity, and proper development practices while keeping the solution simple and focused.
 - Human prompts AI to create demo branch from main using `mcp_github_create_branch`
 - Switch to demo branch locally for development context
 
