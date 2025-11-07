@@ -35,7 +35,9 @@ graph TD
     C --> D[🌿 Agent: Create Hotfix Branch]
     D --> E[🛠️ Agent: Local Development]
     E --> F[📤 Agent: Push & Create PR]
-    F --> G[🎉 Merge & Cleanup]
+    F --> G[🎉 Merge & Review]
+    G --> H[✅ Verify & Close Issue]
+    H --> I[🔧 Cleanup & Return to Main]
 
     A1["User: Website styling broken!"] --> A
     B1["Create issue with MCP tools"] --> B
@@ -43,7 +45,9 @@ graph TD
     D1["Agent: Branch creation"] --> D
     E1["Agent: Fix typo automatically"] --> E
     F1["Agent: Push + Auto-link PR"] --> F
-    G1["User: Final merge approval"] --> G
+    G1["User: Review and merge PR"] --> G
+    H1["Pull changes & verify fix"] --> H
+    I1["Delete demo branch & cleanup"] --> I
 
     style A fill:#ff6b6b
     style B fill:#4ecdc4
@@ -52,6 +56,8 @@ graph TD
     style E fill:#96ceb4
     style F fill:#feca57
     style G fill:#ff9ff3
+    style H fill:#a8e6cf
+    style I fill:#dcedc1
 ```
 
 ## 🎮 How to Run the Demo
@@ -64,13 +70,21 @@ graph TD
 - Live Server extension installed
 - Git repository connected to GitHub
 
+> **⚠️ Important**: To run this demo, you'll need **repository permissions** to create branches, issues, and pull requests. If you don't own this repository, please **fork it first** to your GitHub account, then clone your fork locally. This ensures you have the necessary permissions to:
+> - Create demo branches
+> - Create and assign issues
+> - Use GitHub Coding Agent
+> - Merge pull requests
+> - Delete branches
+
 ### **Quick Start**
 
-1. **Setup**: Run the pre-demo commands above to create your demo branch
-2. **Open**: Start Live Server to see the broken, unstyled page
-3. **Begin**: Use the Phase 1 prompt to start the AI-guided workflow
-4. **Follow**: Use the prompts from each phase in sequence
-5. **Cleanup**: Run post-demo cleanup when finished
+1. **Fork Repository**: If you don't own this repo, fork it to your GitHub account first
+2. **Setup**: Run the pre-demo commands to create your demo branch
+3. **Open**: Start Live Server to see the broken, unstyled page
+4. **Begin**: Use the Phase 1 prompt to start the AI-guided workflow
+5. **Follow**: Use the prompts from each phase in sequence (Phases 1-8)
+6. **Cleanup**: Run post-demo cleanup when finished
 
 ### **Phase 0: Pre-Demo Setup** 🔧
 **User Prompt:**
@@ -98,7 +112,7 @@ Copilot, I just opened my World Clock website and it looks completely broken - a
 ### **Phase 2: Issue Management via GitHub MCP** 📝
 **User Prompt:**
 ```
-Now that we've found the CSS link typo, can you create a GitHub issue to track this bug? Make it a critical priority since it breaks the entire user experience. Please create the issue against the current demo branch (not main). In the issue description, explicitly mention that the fix should be developed from the demo branch as the base.
+Now that we've found the CSS link typo, can you create a GitHub issue to track this bug? Make it a critical priority since it breaks the entire user experience. Please create the issue against the current demo branch (not main).
 ```
 
 **Expected AI Actions:**
@@ -152,6 +166,35 @@ This phase requires manual steps by the user (no AI prompt needed):
 3. **Code Review**: Self-reviews the changes for quality assurance
 4. **Status Updates**: Comments on the issue with progress updates
 
+### **👁️ Monitoring GitHub Coding Agent Progress**
+
+**Phase 5 is a long-running automated phase.** Here's how to track the GitHub Coding Agent's work:
+
+#### **🔍 Step 1: Track Agent Session Progress**
+After assigning the issue to GitHub Coding Agent, you can monitor its progress:
+
+1. **Click "View Session"** in the GitHub issue interface to see real-time progress
+2. **Watch the agent's workflow** as it analyzes code, creates branches, and implements fixes
+
+![GitHub Coding Agent Session Progress](./screenshots/copilot-session-progress.png)
+
+*This shows the agent working through the development workflow with live status updates.*
+
+![GitHub Coding Agent View Session](./screenshots/copilot-view-session.png)
+
+#### **⏳ Step 2: Wait for Review Request**
+The GitHub Coding Agent will work autonomously until it completes the fix and requests human review:
+
+1. **Monitor notifications** for PR creation and review requests
+2. **Wait for the agent** to mark its work as complete and ready for review
+3. **Look for the review request notification** - this signals it's time to proceed to Phase 6
+
+![GitHub Coding Agent Review Request](./screenshots/copilot-review-request.png)
+
+*When you see this review request, the agent has finished its work and Phase 6 can begin.*
+
+> **⚠️ Important**: Do not proceed to Phase 6 until GitHub Coding Agent has completed its work and explicitly requested a review. The automated phase can take several minutes depending on the complexity of the fix.
+
 **Note**: If GitHub Copilot defaults to main branch despite instructions, this demonstrates the platform's current limitations in branch selection.
 
 ### **Phase 6: Human Review & Completion** 🎉
@@ -169,17 +212,33 @@ I've reviewed the draft PR from GitHub Coding Agent and I'm happy with the chang
 - Delete the copilot fix branch locally and remotely
 - Confirm merge and cleanup completed successfully
 
-### **Phase 7: Post-Demo Cleanup** 🔧
+### **Phase 7: Verify Fix Locally & Close Issue** ✅
 **User Prompt:**
 ```
-Great! Now that the fix is merged, can you delete the demo branch both locally and remotely, and switch back to the main branch?
+Great! Now that the fix is merged, can you pull demo branch locally to ensure all is working fine? If so, please close the issue with a comment.
+```
+
+**Expected AI Actions:**
+- Pull latest changes from demo branch to local repository
+- Verify the CSS fix is applied correctly in `index.html`
+- Confirm the `styles.css` file exists and loads properly
+- Test the fix by checking file content and git history
+- Add a comprehensive closure comment to the GitHub issue
+- Close the issue with `state: closed` and `state_reason: completed`
+- Summarize the successful demo workflow completion
+
+### **Phase 8: Post-Demo Cleanup** 🔧
+**User Prompt:**
+```
+The fix is working, can you delete the demo branch both locally and remotely, and switch back to the main branch?
 ```
 
 **Expected AI Actions:**
 - Use `mcp_github_delete_branch` or terminal commands to delete remote demo branch
 - Delete local demo branch using git commands
 - Switch back to main branch
-- Confirm cleanup completion
+- Confirm cleanup completion and repository state
+- Summarize the complete demo workflow success
 
 ## 📚 Additional Resources
 
@@ -191,5 +250,3 @@ Great! Now that the fix is merged, can you delete the demo branch both locally a
 ---
 
 **Ready to demonstrate the power of GitHub Coding Agent workflows!** 🚀
-```
-````
