@@ -2,7 +2,15 @@
 
 ## 🎯 Demo Scenario Overview
 
-This project demonstrates a complete DevOps workflow using **GitHub Coding Agent** integration with VS Code Copilot. The scenario showcases how AI can assist in the entire software development lifecycle from issue detection to deployment, with **Phase 3** using GitHub Coding Agent automation instead of manual MCP tools.
+This project is a **follow-up demonstration** to the original [GitHub MCP Demo](https://github.com/david-pizzi-cg/github-mcp-demo), showcasing the evolution from manual, human-guided workflows to autonomous AI-driven development.
+
+**Philosophy Shift**: 
+- **Original Demo**: Human-in-the-loop approach where AI assists but requires constant guidance
+- **This Demo**: AI-autonomous approach where humans delegate complex tasks to AI agents
+
+This demonstrates the transition from **AI as a tool** (requiring step-by-step human direction) to **AI as a teammate** (capable of independent problem-solving and execution).
+
+This project demonstrates a complete DevOps workflow using **GitHub Coding Agent** integration with VS Code Copilot, showcasing how AI can autonomously handle complex development tasks that previously required step-by-step human guidance.
 
 ## 📋 Demo Scenario: CSS Stylesheet Bug
 
@@ -207,15 +215,17 @@ I've reviewed the draft PR from GitHub Coding Agent and I'm happy with the chang
 - Review the GitHub Coding Agent's draft PR and changes
 - Analyze the fix: `href="styls.css"` → `href="styles.css"`
 - Use `mcp_github_update_pull_request` to mark as ready for review (remove draft status)
-- Use `mcp_github_merge_pull_request` to merge PR into the target branch
-- Issue will auto-close due to "Fixes #" in PR description
+- Use `mcp_github_merge_pull_request` to merge PR into the demo branch
 - Delete the copilot fix branch locally and remotely
 - Confirm merge and cleanup completed successfully
 
 ### **Phase 7: Verify Fix Locally & Close Issue** ✅
+
+> **💡 Why Manual Issue Closure is Needed**: According to [GitHub's documentation](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#about-linked-issues-and-pull-requests), issues only auto-close when PRs are merged into the **default branch** (usually `main`). Since this demo merges into the `demo` branch (not the default), the "Fixes #" syntax creates the link but doesn't trigger auto-closure. This is why we need to manually close the issue in this phase.
+
 **User Prompt:**
 ```
-Great! Now that the fix is merged, can you pull demo branch locally to ensure all is working fine? If so, please close the issue with a comment.
+Great! Now that the fix is merged, can you pull the demo branch locally to ensure all is working fine? If so, please close the issue with a comment.
 ```
 
 **Expected AI Actions:**
