@@ -83,7 +83,7 @@ graph TD
 
 1. **Fork Repository**: Since you don't own this repo, fork it to your GitHub account first to have enough permissions to create branches, issues, and pull requests.
 2. **Setup**: Run the pre-demo commands to create your demo branch (Phase 0)
-3. **Open**: Start Live Server to see the broken, unstyled page
+3. **Open**: Start Live Server to see the broken, unstyled page (OPTIONAL)
 4. **Begin**: Use the Phase 1 prompt to start the AI-guided workflow
 5. **Follow**: Use the prompts from each phase in sequence (Phases 1-7)
 6. **Cleanup**: Run post-demo cleanup when finished (Phase 8)
