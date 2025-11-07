@@ -75,24 +75,18 @@ graph TD
 - VS Code with GitHub Copilot
 - GitHub repository with Coding Agent enabled
 - GitHub MCP Server configured
-- Live Server extension installed
+- Live Server extension installed (OPTIONAL)
 - Git repository connected to GitHub
 
-> **⚠️ Important**: To run this demo, you'll need **repository permissions** to create branches, issues, and pull requests. If you don't own this repository, please **fork it first** to your GitHub account, then clone your fork locally. This ensures you have the necessary permissions to:
-> - Create demo branches
-> - Create and assign issues
-> - Use GitHub Coding Agent
-> - Merge pull requests
-> - Delete branches
 
 ### **Quick Start**
 
-1. **Fork Repository**: If you don't own this repo, fork it to your GitHub account first
-2. **Setup**: Run the pre-demo commands to create your demo branch
+1. **Fork Repository**: Since you don't own this repo, fork it to your GitHub account first to have enough permissions to create branches, issues, and pull requests.
+2. **Setup**: Run the pre-demo commands to create your demo branch (Phase 0)
 3. **Open**: Start Live Server to see the broken, unstyled page
 4. **Begin**: Use the Phase 1 prompt to start the AI-guided workflow
-5. **Follow**: Use the prompts from each phase in sequence (Phases 1-8)
-6. **Cleanup**: Run post-demo cleanup when finished
+5. **Follow**: Use the prompts from each phase in sequence (Phases 1-7)
+6. **Cleanup**: Run post-demo cleanup when finished (Phase 8)
 
 ### **Phase 0: Pre-Demo Setup** 🔧
 **User Prompt:**
@@ -203,12 +197,10 @@ The GitHub Coding Agent will work autonomously until it completes the fix and re
 
 > **⚠️ Important**: Do not proceed to Phase 6 until GitHub Coding Agent has completed its work and explicitly requested a review. The automated phase can take several minutes depending on the complexity of the fix.
 
-**Note**: If GitHub Copilot defaults to main branch despite instructions, this demonstrates the platform's current limitations in branch selection.
-
 ### **Phase 6: Human Review & Completion** 🎉
 **User Prompt:**
 ```
-I've reviewed the draft PR from GitHub Coding Agent and I'm happy with the changes. The CSS link fix looks correct. Please mark the PR as ready for review and merge it.
+I've reviewed the draft PR from GitHub Coding Agent and I'm happy with the changes. The CSS link fix looks correct. Please mark the PR as ready for review, merge it and delete copilot branch.
 ```
 
 **Expected AI Actions:**
@@ -225,7 +217,7 @@ I've reviewed the draft PR from GitHub Coding Agent and I'm happy with the chang
 
 **User Prompt:**
 ```
-Great! Now that the fix is merged, can you pull the demo branch locally to ensure all is working fine? If so, please close the issue with a comment.
+Great! Now that the fix is merged, can you pull the demo branch locally if needed to ensure all is working fine? If so, please close the issue with a comment.
 ```
 
 **Expected AI Actions:**
@@ -253,7 +245,7 @@ The fix is working, can you delete the demo branch both locally and remotely, an
 ## 📚 Additional Resources
 
 - [GitHub Coding Agent Documentation](https://docs.github.com/en/copilot/using-github-copilot/using-copilot-coding-agent-to-work-on-tasks)
-- [GitHub MCP Server Documentation](https://github.com/modelcontextprotocol/servers)
+- [GitHub MCP Server Documentation](https://github.com/github/github-mcp-server)
 - [VS Code Copilot Integration](https://code.visualstudio.com/docs/copilot)
 - [DevOps Best Practices](https://docs.github.com/en/actions/guides)
 
